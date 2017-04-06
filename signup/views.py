@@ -10,6 +10,7 @@ from jinja2.ext import loopcontrols
 from rest_framework import status, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from django.db import IntegrityError
 
 from webhub import views as webhub_view
 from webhub.checker import check
@@ -62,20 +63,24 @@ def signup_do(request):
 
     try:
         if len(User.objects.filter(email=email))<>0:
-            return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                                  "text":'<p>Someone has already registered using this email.</p><p>If you have forgotten your password, click <a href=\'/signup_page/\'></p><p>Click here</a> to go back to signup page.</p>',"link":'0'}))
+            return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None,
+                                                                                  "text":'<p>Someone has already registered using this email.</p><p><a href="/forgot_pass_page/">Forgot your password?</a></p>'}))
     except:
         pass
     
     if '@' not in email or '.' not in email:
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'<p>Invalid email, please Enter again.</p>',"text1":'<p>Click here to go to signup page.</p>',"link":"/signup_page/"}))
+        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None,
+                                                                              "text":'<p>Invalid email, please Enter again.</p>'}))
     
         
     if first_name == "":
         first_name = username
     
-    user = User.objects.create_user(username, email, password)
+    try:
+        user = User.objects.create_user(username, email, password)
+    except IntegrityError as e:
+        return HttpResponse(jinja_environ.get_template('signup.html').render({"pcuser":None,"text":'<p>The username already exists!'}))
+
     user.first_name = first_name
     user.last_name = last_name
     user.save()

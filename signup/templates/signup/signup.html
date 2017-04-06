@@ -25,10 +25,6 @@ email : ranihaileydesai@gmail.com
         margin:0 auto;
         background-color:#0d8b97;
     }
-    .error{
-        color:red;
-        size:12;
-    }
     .ast{
         color:red;
         size:11;
@@ -39,10 +35,11 @@ email : ranihaileydesai@gmail.com
 <body>
     
     {% include "header.html" %}
+   
     <br><br><br><br><br><br><br>
-    <center class= "error"><p> {{text}}</p></center>
-    <br>
-    
+
+    <center class= "text-danger"><p> {{text}}</p></center>
+    <br> 
         
     <center>
     <font color="white">
@@ -83,7 +80,7 @@ email : ranihaileydesai@gmail.com
         <font color="white"><h4>Set Password<span class="ast" >*</span></h4></font>
         <input type="password" name="password" align="right" required>
         <font color="white"><h4>Confirm Password<span class="ast" >*</span></h4></font>
-        <input type="password" name="confirmpassword" required> <br> both passwords should match <br>
+        <input type="password" name="confirmpassword" required>
         
         <font color="white"><h4>Phone<span class="ast" >*</span></h4></font>
         <input type="tel" name="phone" align="right" required>
