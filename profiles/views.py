@@ -18,7 +18,7 @@ from signup.models import *
 from webhub.checker import check
 from webhub.serializers import *
 
-jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles']), extensions=[loopcontrols])
+jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles','ui']), extensions=[loopcontrols])
 
 # Create your views here.
 @csrf_exempt
@@ -40,9 +40,9 @@ def login_do(request):
             if len(User.objects.filter(username=request.REQUEST['username'])) == 0:
                 return HttpResponse("inv_user")
             return HttpResponse("inv_pass")
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'Invalid Login.', "text1":'Click here to go to home page.',"link":'/'}))
-    
+        return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":None, "text":'Incorrect username or password.'}))
+
+
     
 #Called when a user clicks logout button.
 @cache_control(no_cache=True, must_revalidate=True, no_store=True)
