@@ -10,7 +10,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Category Id</label>
-            <div class="col-sm-9">
+            <div class="{% if form.title_post.errors %} col-sm-9 has-error {% else %} col-sm-9 {% endif %}">
                 <input class="form-control" type="number" name="category_id" value="{% if form.category_id.value %}{{ form.category_id.value }}{% endif %}">
                 <p class="help-block inverted-font">
                     <strong>
@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title</label>
-            <div class="col-sm-9">
+            <div class="{% if form.title_post.errors %} col-sm-9 has-error {% else %} col-sm-9 {% endif %}">
                 <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
                 <p class="help-block inverted-font">
                     <strong>

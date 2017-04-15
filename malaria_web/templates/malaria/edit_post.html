@@ -17,7 +17,7 @@
         {% csrf_token %}
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title <span class="ast" >*</span></label>
-            <div class="col-sm-9">
+            <div class="{% if form.title_post.errors %} col-sm-9 has-error {% else %} col-sm-9 {% endif %}">
                 <input class="form-control" type="text" name="title_post" value="{% if form.title_post.value %}{{ form.title_post.value }}{% endif %}">
                 <p class="help-block inverted-font">
                     <strong>
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Description <span class="ast" >*</span></label>
-            <div class="col-sm-9">
+            <div class="{% if form.title_post.errors %} col-sm-9 has-error {% else %} col-sm-9 {% endif %}">
                 <textarea class="form-control" rows="18" name="description_post" minlength=100>{% if form.title_post.value %}{{ form.description_post.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">    
                     <strong>
