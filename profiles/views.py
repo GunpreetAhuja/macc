@@ -18,7 +18,7 @@ from signup.models import *
 from webhub.checker import check
 from webhub.serializers import *
 
-jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles']), extensions=[loopcontrols])
+jinja_environ = jinja2.Environment(loader=jinja2.FileSystemLoader(['profiles/templates/profiles', 'ui']), extensions=[loopcontrols])
 
 # Create your views here.
 @csrf_exempt
@@ -101,11 +101,6 @@ def edit_profile(request):
                 os.remove(path)
         request.user.pcuser.imageobj = request.FILES['image']
         request.user.pcuser.image = '/static/' + request.user.username + ".jpg"
-    
-    
-    
-    
-    
     
     request.user.pcuser.gender = request.REQUEST['gender']
     request.user.pcuser.phone = request.REQUEST['phone']
@@ -216,8 +211,8 @@ def change_pass(request):
         user.pcuser.reset_pass = ""
         user.pcuser.save()
         logout(request)
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'Password Changed.',"text1":'Please click here to go to the homepage and log in again.',"link":'/logout_do/'}))
+        return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":None,
+                                                                              "text":'Password Changed. Please login again.'}))
     else:
         retval = check(request)
         if retval <> None:
@@ -231,8 +226,8 @@ def change_pass(request):
         request.user.set_password(request.REQUEST['pass'])
         request.user.save()
         logout(request)
-        return HttpResponse(jinja_environ.get_template('notice.html').render({"pcuser":None,
-                                                                              "text":'Password Changed.',"text1":'Please click here to go to the homepage and log in again.',"link":'/logout_do/'}))
+        return HttpResponse(jinja_environ.get_template('index.html').render({"pcuser":None,
+                                                                              "text":'Password Changed. Please login again.'}))
     
     
     
