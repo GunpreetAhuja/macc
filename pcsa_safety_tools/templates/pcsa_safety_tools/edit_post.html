@@ -9,9 +9,8 @@
     <form class="form-horizontal" action="{% url 'pcsa_safety_tools:edit_post' post.id %}" method="post">
         {% csrf_token %}
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Title</label>
-            <div class="col-sm-9">
-                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+            <div class="col-sm-10 col-sm-offset-1">
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}" placeholder="Title">
                 <p class="help-block inverted-font">
                     <strong>
                         {% if form.title.errors %}
@@ -24,9 +23,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label inverted-font">Description</label>
-            <div class="col-sm-9">
-                <textarea class="form-control" rows="18" name="description" minlength=100>{% if form.title.value %}{{ form.description.value }}{% endif %}</textarea>
+            <div class="col-sm-10 col-sm-offset-1">
+                <textarea class="form-control" rows="18" name="description" minlength=100 placeholder="Description of your post">{% if form.title.value %}{{ form.description.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">    
                     <strong>
                         {% if form.description.errors %}
@@ -39,7 +37,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-12 col-sm-offset-2">
+            <div class="col-sm-12 col-sm-offset-1">
                 <button type="submit" class="btn btn-default">Submit</button>
                 <a href="{% url 'pcsa_safety_tools:home' %}" class="btn btn-default">Cancel</a>
             </div>
