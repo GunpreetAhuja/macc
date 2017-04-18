@@ -11,7 +11,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Title</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}">
+                <input class="form-control" type="text" name="title" value="{% if form.title.value %}{{ form.title.value }}{% endif %}" placeholder="Title of your post">
                 <p class="help-block inverted-font">
                     <strong>
                         {% if form.title.errors %}
@@ -26,7 +26,7 @@
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Description</label>
             <div class="col-sm-9">
-                <textarea class="form-control" rows="18" name="description" minlength=100>{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+                <textarea class="form-control" rows="18" name="description" minlength=100 placeholder="Explain your post in detail">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
                 <p class="help-block inverted-font">
                     <strong>
                         {% if form.description.errors %}

@@ -17,7 +17,7 @@ $(window).load(funtion()
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Office address</label>
             <div class="col-sm-9">
-                <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}">
+                <input class="form-control" type="text" name="office_name" value="{% if form.office_name.value %}{{ form.office_name.value }}{% endif %}" placeholder="Name of the contact">
                 <p class="help-block inverted-font">
                     <strong>
                         {% if form.office_name.errors %}
@@ -32,7 +32,7 @@ $(window).load(funtion()
         <div class="form-group">
             <label class="col-sm-2 control-label inverted-font">Phone Number</label>
             <div class="col-sm-9">
-                <input class="form-control" type="number" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}" >
+                <input class="form-control" type="number" name="contact_number" value="{% if form.contact_number.value %}{{ form.contact_number.value }}{% endif %}" placeholder="Enter 7-15 digit phone number with country code">
                 <p class="help-block inverted-font">
                     <strong>
                         {% if form.contact_number.errors %}
